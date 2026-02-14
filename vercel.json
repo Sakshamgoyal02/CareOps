@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "https://care-ops-backend.vercel.app/api/$1" }
+  ]
+}
