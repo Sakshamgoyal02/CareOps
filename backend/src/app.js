@@ -21,6 +21,25 @@ app.get("/", (req, res) => {
   res.send("CareOps API is running");
 });
 
+// Simple health endpoint to help with deployments and debugging.
+// Returns whether the app is connected to MongoDB and whether key env vars are present (values not exposed).
+app.get("/api/health", (req, res) => {
+  try {
+    const dbOk = checkDB();
+    res.json({
+      status: "ok",
+      dbConnected: !!dbOk,
+      env: {
+        MONGO_URI_set: !!process.env.MONGO_URI,
+        JWT_SECRET_set: !!process.env.JWT_SECRET,
+        SMTP_configured: !!(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS && process.env.EMAIL_FROM),
+      },
+    });
+  } catch (err) {
+    res.status(500).json({ status: "error", message: err.message });
+  }
+});
+
 app.use("/api", (req, res, next) => {
   if (!checkDB()) {
     return res.status(503).json({
