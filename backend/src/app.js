@@ -1,16 +1,16 @@
 import express from "express";
 import cors from "cors";
 import connectDB, { checkDB } from "./config/db.js";
-import authRoutes from "../routes/authRoutes.js";
-import userRoutes from "../routes/userRoutes.js";
-import workspaceRoutes from "../routes/workspaceRoutes.js";
-import serviceTypeRoutes from "../routes/serviceTypeRoutes.js";
-import contactConversationRoutes from "../routes/contactConversationRoutes.js";
-import bookingRoutes from "../routes/bookingRoutes.js";
-import inventoryRoutes from "../routes/inventoryRoutes.js";
-import alertRoutes from "../routes/alertRoutes.js";
-import dashboardRoutes from "../routes/dashboardRoutes.js";
-import emailIntegrationRoutes from "../routes/emailIntegration.js";
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import workspaceRoutes from "./routes/workspaceRoutes.js";
+import serviceTypeRoutes from "./routes/serviceTypeRoutes.js";
+import contactConversationRoutes from "./routes/contactConversationRoutes.js";
+import bookingRoutes from "./routes/bookingRoutes.js";
+import inventoryRoutes from "./routes/inventoryRoutes.js";
+import alertRoutes from "./routes/alertRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
+import emailIntegrationRoutes from "./routes/emailIntegration.js";
 
 const app = express();
 
