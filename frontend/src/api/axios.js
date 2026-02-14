@@ -1,6 +1,16 @@
 import axios from "axios";
 
-const BASE = typeof import.meta !== "undefined" && import.meta.env?.VITE_API_BASE ? import.meta.env.VITE_API_BASE : "/api";
+const rawBase = typeof import.meta !== "undefined" && import.meta.env?.VITE_API_BASE ? import.meta.env.VITE_API_BASE : null;
+let BASE;
+if (!rawBase) {
+  BASE = "/api";
+} else {
+  // normalize: remove trailing slash then ensure it ends with /api
+  let b = rawBase.trim();
+  if (b.endsWith("/")) b = b.slice(0, -1);
+  if (!b.endsWith("/api")) b = b + "/api";
+  BASE = b;
+}
 
 const api = axios.create({
   baseURL: BASE,
